@@ -20,7 +20,7 @@ jobs:
             sudo apt-get install python3-venv
             python3 -m venv v-env
             . v-env/bin/activate
-            # make install
+            make install
             # make lint
   build:
     machine: true
