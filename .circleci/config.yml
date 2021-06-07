@@ -38,6 +38,7 @@ jobs:
             docker build --tag flask-app .
       - run:
           name: Pushing Docker Image to Docker Hub
+          command:  |
             docker tag flask-app:latest akshtrikha/flask-app:hello-${CIRCLE_WORKFLOW_ID:0:7}
             docker push akshtrikha/flask-app:hello-${CIRCLE_WORKFLOW_ID:0:7}
   
