@@ -9,20 +9,24 @@ executors:
       - image: amazon/aws-cli
 
 jobs:
-  lint-app:
+  linting:
     executor: python
     steps:
       - checkout
       - run:
-          name: Install dependencies and Lint app
+          name: Installing Dependencies
           command: |
             sudo apt-get update
             sudo apt-get install python3-venv
-            python3 -m venv v-env
-            . v-env/bin/activate
+      - run:
+          name: Linting
+          command:  |
+            make setup
+            . .env/bin/activate
             make install
             make lint
-  build:
+
+  building:
     machine: true
     working_directory: ~/app
     steps:
