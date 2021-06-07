@@ -1,5 +1,5 @@
 setup:
-	python3 -m venv env
+	python3 -m venv .env
 
 install:
 # This should be run from inside a virtualenv
