@@ -17,11 +17,11 @@ jobs:
           name: Install dependencies and Lint app
           command: |
             sudo apt-get update
-            sudo apt-get install python3-venv
-            python3 -m venv virtualenv
-            . virtualenv/bin/activate
-            make install
-            make lint
+            # sudo apt-get install python3-venv
+            # python3 -m venv virtualenv
+            # . virtualenv/bin/activate
+            # make install
+            # make lint
   build:
     machine: true
     working_directory: ~/app
