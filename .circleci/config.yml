@@ -21,7 +21,7 @@ jobs:
             python3 -m venv v-env
             . v-env/bin/activate
             make install
-            # make lint
+            make lint
   build:
     machine: true
     working_directory: ~/app
