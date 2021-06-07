@@ -85,4 +85,6 @@ workflows:
   deploy:
     jobs:
       - linting
-      - building
+      - building:
+          requires:
+            - linting
