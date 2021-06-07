@@ -83,4 +83,4 @@ orbs:
 workflows:
   deploy:
     jobs:
-      - lint-app
+      - linting
