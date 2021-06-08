@@ -92,7 +92,7 @@ workflows:
           cluster-name: flask-app
           requires: [building]
       - creating-deployment:
-          cluster-name: [flask-app]
+          cluster-name: flask-app
           requires: [aws-eks/create-cluster]
       - testing-cluster:
           requires: [creating-deployment]
