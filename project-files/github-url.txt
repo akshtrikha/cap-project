@@ -1,0 +1,16 @@
+Github URL: https://github.com/akshtrikha/cap-project
+
+
+SCREENSHOTS:
+
+Verification of Cluster:	cluster-verification.png
+Proof of Container Update:	container-image-update.png
+Screenshot of EC2 Instances:	ec2-instances.png
+Screenshot of EKS Cluster:	eks-cluster.png
+Screenshot of eksctl Stacks:	eks-ctl-stack.png
+Failed Linting Test:		failed-linting.png
+Successful Linting Test:	successful-linting.png
+Cluster Testing:		testing-cluster.png
+Pipeline:			pipeline1.png, pipeline2.png
+Resource Description:		resource-description.png
+Rollout Status:		rollout-status.png
