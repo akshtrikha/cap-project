@@ -100,4 +100,4 @@ workflows:
       - aws-eks/delete-cluster:
           cluster-name: flask-app
           requires:
-            - test-cluster
+            - testing-cluster
