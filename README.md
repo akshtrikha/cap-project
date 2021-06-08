@@ -1,5 +1,7 @@
 # Project on Container Deployment
 
+### Screenshots are in the [project-files](https://github.com/akshtrikha/cap-project/tree/main/project-files) folder
+
 This project showcases Rolling Deployment of a simple Hello World! Flask app on EKS using eksctl.
 
 Tasks completed by the CI/CD Pipeline
