@@ -97,3 +97,7 @@ workflows:
       - testing-cluster:
           cluster-name: flask-app
           requires: [creating-deployment]
+      - aws-eks/delete-cluster:
+          cluster-name: flask-app
+          requires:
+            - test-cluster
