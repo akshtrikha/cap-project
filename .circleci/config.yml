@@ -53,9 +53,10 @@ jobs:
         description: |
           flask-app
         type: string
-      aws_region:
+      aws-region:
         description:  |
           ap-south-1
+        type: string
     steps:
       - checkout
       - kubernetes/install
@@ -74,9 +75,10 @@ jobs:
         description: |
           flask-app
         type: string
-      aws_region:
+      aws-region:
         description:  |
           ap-south-1
+        type: string
     steps:
       - kubernetes/install
       - aws-eks/update-kubeconfig-with-authenticator:
@@ -96,12 +98,12 @@ workflows:
           requires: [linting]
       - aws-eks/create-cluster:
           cluster-name: flask-app
-          aws_region: ap-south-1
-          node_type:  t2.micro
+          aws-region: ap-south-1
+          node-type:  t2.micro
           requires: [building]
       - creating-deployment:
           cluster-name: flask-app
-          aws_region: ap-south-1
+          aws-region: ap-south-1
           requires: [aws-eks/create-cluster]
       - aws-eks/update-container-image:
           cluster-name: flask-app
@@ -117,7 +119,7 @@ workflows:
           resource-name: deployment/flask-app
       - testing-cluster:
           cluster-name: flask-app
-          aws_region: ap-south-1
+          aws-region: ap-south-1
           requires: [aws-eks/update-container-image]
       - aws-eks/delete-cluster:
           cluster-name: flask-app
