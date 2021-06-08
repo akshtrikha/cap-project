@@ -1,8 +1,8 @@
 version: 2.1
 
 orbs:
-  aws-eks: circleci/aws-eks@1.0.3
-  kubernetes: circleci/kubernetes@0.11.2
+  aws-eks: circleci/aws-eks@1.1.0
+  kubernetes: circleci/kubernetes@0.12.0
 
 executors:
   python:
@@ -89,6 +89,10 @@ jobs:
             kubectl get svc
             kubectl get nodes
             kubectl get deployment
+      - run:
+          name: Retrieve Endpoint Url
+          command:  |
+            aws cloudformation describe-stacks --stack-name eskctl-flask-app-cluster
 
 workflows:
   deploy:
@@ -99,7 +103,6 @@ workflows:
       - aws-eks/create-cluster:
           cluster-name: flask-app
           aws-region: ap-south-1
-          node-type:  t2.micro
           requires: [building]
       - creating-deployment:
           cluster-name: flask-app
