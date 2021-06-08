@@ -43,15 +43,15 @@ jobs:
       - run:
           name: Pushing Docker Image to Docker Hub
           command:  |
-            docker tag flask-app:latest akshtrikha/flask-app:hello-${CIRCLE_WORKFLOW_ID:0:7}
-            docker push akshtrikha/flask-app:hello-${CIRCLE_WORKFLOW_ID:0:7}
+            docker tag flask-app:latest akshtrikha/flask-app:latest
+            docker push akshtrikha/flask-app:latest
   
-  create-deployment:
+  creating-deployment:
     executor: aws-eks/python3
     parameters:
       cluster-name:
         description: |
-          gsvcapstone
+          flask-app
         type: string
     steps:
       - checkout
@@ -61,22 +61,22 @@ jobs:
           install-kubectl: true
       - kubernetes/create-or-update-resource:
           get-rollout-status: true
-          resource-file-path: appdeployment.yml
-          resource-name: deployment/gsvcapstone
+          resource-file-path: deployment-config.yml
+          resource-name: deployment/flask-app
 
-  test-cluster:
+  testing-cluster:
     executor: aws-eks/python3
     parameters:
       cluster-name:
         description: |
-          gsvcapstone
+          flask-app
         type: string
     steps:
       - kubernetes/install
       - aws-eks/update-kubeconfig-with-authenticator:
           cluster-name: << parameters.cluster-name >>
       - run:
-          name: Test cluster
+          name: Getting Data
           command: |
             kubectl get svc
             kubectl get nodes
@@ -87,5 +87,12 @@ workflows:
     jobs:
       - linting
       - building:
-          requires:
-            - linting
+          requires: [linting]
+      - aws-eks/create-cluster:
+          cluster-name: flask-app
+          requires: [building]
+      - creating-deployment:
+          cluster-name: [flask-app]
+          requires: [aws-eks/create-cluster]
+      - testing-cluster:
+          requires: [creating-deployment]
